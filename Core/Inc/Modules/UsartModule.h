@@ -10,9 +10,7 @@
 
 #include "main.h"
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	HAL_UART_Receive_IT(huart,&rxcall,1);
-}
+
 
 
 #endif /* MODULES_USARTMODULE_H_ */

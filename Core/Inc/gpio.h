@@ -28,9 +28,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-#define LED_PORT	GPIOC
-#define LED_PIN		GPIO_PIN_13
-
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */

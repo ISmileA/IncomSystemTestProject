@@ -17,12 +17,19 @@ int main(void)
   HAL_UART_Receive_IT(&huart1,&rxcall,1);
 
   BootModeStart();
+  uint8_t data[1] = {0x7F};
 
   while (1)
   {
-	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	  HAL_Delay(200);
+	  HAL_UART_Transmit_IT(&huart1, data, 1);
+	  HAL_Delay(500);
   }
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	if(rxcall == 0x79)
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	HAL_UART_Receive_IT(huart,&rxcall,1);
 }
 
 void SystemClock_Config(void)
