@@ -9,7 +9,7 @@
 #define INC_COMMANDMODULE_H_
 
 #include "main.h"
-
+#include "Configs/BootConfig.h"
 
 #define BOOT_PIN	GPIO_PIN_12
 #define RESET_PIN	GPIO_PIN_11

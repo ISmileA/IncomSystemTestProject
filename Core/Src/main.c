@@ -10,13 +10,13 @@ void SystemClock_Config(void);
 
 int main(void)
 {
-
   HAL_Init();
   SystemClock_Config();
   MX_GPIO_Init();
   MX_USART1_UART_Init();
-
   HAL_UART_Receive_IT(&huart1,&rxcall,1);
+
+  BootModeStart();
 
   while (1)
   {
