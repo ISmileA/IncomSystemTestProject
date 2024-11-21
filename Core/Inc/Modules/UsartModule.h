@@ -11,6 +11,4 @@
 #include "main.h"
 
 
-
-
 #endif /* MODULES_USARTMODULE_H_ */

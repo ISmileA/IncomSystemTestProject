@@ -1,5 +1,5 @@
-#ifndef CRC16_H
-#define CRC16_H
+#ifndef CRC_H
+#define CRC_H
 
 #include "main.h"
 
@@ -14,7 +14,7 @@
 */
 #define POLY 0x1021
 
-static uint16_t calc(uint8_t data[], uint16_t size) {
+static uint16_t crc16(uint8_t data[], uint16_t size) {
 	uint16_t crc = 0xFFFF;
 
 	for (uint16_t j = 0; j < size; j++)
@@ -25,5 +25,15 @@ static uint16_t calc(uint8_t data[], uint16_t size) {
 	}
 	return crc;
 }
+
+uint8_t crcAN3155(uint8_t *data, uint8_t len){
+	uint8_t numb = 0;
+	for(int i=0; i<len; i++){
+		numb^=data[i];
+	}
+	return numb;
+}
+
+
 
 #endif // CRC16_H

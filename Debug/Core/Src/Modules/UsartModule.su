@@ -1,0 +1,2 @@
+../Core/Inc/Modules/ParsingModule.h:13:6:DataParser	16	static
+../Core/Src/Modules/UsartModule.c:8:6:HAL_UART_RxCpltCallback	16	static

@@ -4,7 +4,9 @@
 #include "Modules/CommandModule.h"
 
 extern UART_HandleTypeDef huart1;
-uint8_t rxcall;
+uint8_t rxcall = 0;
+ReciveData recive = {RECIVE_STATE, 1, {}};
+Action action = {START_COMMAND, 0, 0, {}};
 
 void SystemClock_Config(void);
 
@@ -17,19 +19,22 @@ int main(void)
   HAL_UART_Receive_IT(&huart1,&rxcall,1);
 
   BootModeStart();
-  uint8_t data[1] = {0x7F};
-
   while (1)
   {
-	  HAL_UART_Transmit_IT(&huart1, data, 1);
+	  switch(action.command){
+	  	  case(START_COMMAND):
+			  StartCommand();
+		  	  break;
+	  	  case(READ_COMMAND):
+//			  ReadFlashData(FLASH_ADRESS_START, 10);
+//		   	  TestRead();
+		  	  break;
+	  	  case(GO_COMMAND):
+		  	  break;
+	  }
+	  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	  HAL_Delay(500);
   }
-}
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	if(rxcall == 0x79)
-		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	HAL_UART_Receive_IT(huart,&rxcall,1);
 }
 
 void SystemClock_Config(void)
