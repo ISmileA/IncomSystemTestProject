@@ -6,8 +6,16 @@
 extern UART_HandleTypeDef huart1;
 uint8_t rxcall = 0;
 ReciveData recive = {RECIVE_STATE, 1};
-Action action = {START_COMMAND, 0, {}};
+Action action = {GET_DATA_SIZE, 0, {}};
 void SystemClock_Config(void);
+
+uint32_t byteReads = 0;
+uint32_t dataSize = 18428;
+uint16_t crc16_schet = 0x3E42;
+uint16_t crc_now = 0xFFFF;
+uint16_t read = MAX_DATA;
+
+uint16_t schet = 0;
 
 int main(void)
 {
@@ -18,15 +26,52 @@ int main(void)
   HAL_UART_Receive_IT(&huart1,&rxcall,1);
 
   BootModeStart();
-  HAL_Delay(500);
+  HAL_Delay(700);
   StartCommand();
+
   while (1)
   {
-
-	  if(ReadFlashData(FLASH_ADRESS_START, MAX_DATA))
-		  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-	  HAL_Delay(500);
-
+	  switch(action.command){
+	  	  case(GET_DATA_SIZE):
+			  if(ReadFlashData(FLASH_DATA_SIZE_POS, FLASH_DATA_SIZE_LEN)){
+//				  dataSize = (uint32_t)(action.data[0] << 24) |
+//			      (uint32_t)(action.data[1] << 16) | (uint32_t)(action.data[2] << 8) |
+//				  (uint32_t)(action.data[3]);
+//				  crc_now = crc16(crc_now, action.data, 2);
+//				  uint8_t dt[2] = {action.data[2], action.data[3]};
+//				  crc_now = crc16(crc_now, dt, 2);
+				  action.command = GET_CRC16;
+			  }
+		  	  break;
+	  	  case(GET_CRC16):
+			  if(ReadFlashData(FLASH_CRC16_POS, 2)){
+				  crc16_schet = (uint16_t)(action.data[0] << 8) |
+				  (uint16_t)(action.data[1]);
+				  action.command = READ_DATA;
+			  }
+	  	  	  break;
+	  	  case(READ_DATA):
+			  if(ReadFlashData(FLASH_ADRESS_START+byteReads, read) && dataSize >= read){
+				  byteReads+=read;
+				  crc_now = crc16(crc_now, action.data, read);
+				  schet+=1;
+				  if((dataSize-byteReads) == 0){
+					  HAL_GPIO_WritePin(BOOT_PORT, BOOT_PIN, GPIO_PIN_RESET);
+					  action.command = GO_COMMAND;
+				  }else if((dataSize-byteReads) < read){
+					  read = (dataSize-byteReads);
+				  }
+			  }
+	  	  	  break;
+	  	  case(GO_COMMAND):
+			  if(GoInProgramm(0x80000000)){
+				  action.command = 0x00;
+			  }
+	  	  	  break;
+	  	  case(0):
+			  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+			  HAL_Delay(500);
+	  }
   }
 }
 

@@ -2,7 +2,7 @@
 #include "Modules/ParsingModule.h"
 
 uint16_t recived_bytes = 0;
-uint8_t buffer[MAX_DATA] = {};
+uint8_t buffer[1024] = {};
 uint32_t timer = 0;
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){

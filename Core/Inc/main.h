@@ -31,6 +31,11 @@ extern "C" {
 #include "Configs/AN3155Config.h"
 #include "Configs/BootConfig.h"
 
+#define GET_DATA_SIZE   0x01
+#define GET_CRC16		0x02
+#define READ_DATA		0x03
+#define GO_IN			0x04
+
 typedef struct{
 	uint8_t command;
 	uint16_t length;

@@ -82,5 +82,26 @@ uint8_t ReadFlashData(uint32_t address, uint16_t len){
 	return AN_OK;
 }
 
+uint8_t GoInProgramm(uint32_t address){
+	uint8_t data[5] = {GO_COMMAND, 0xFF^GO_COMMAND, 0, 0, 0};
+	TransmitOnAN3155(data, 2);
+	if(AwaitResponce(ACK, ANSWER_WAIT_TIME) == AN_ERROR)
+		return AN_ERROR;
+	action.flag = NONE;
+
+	data[0] = (uint8_t)(address >> 24);
+	data[1] = (uint8_t)(address >> 16);
+	data[2] = (uint8_t)(address >> 8);
+	data[3] = (uint8_t)(address);
+	data[4] = crcAN3155(data, 4);
+	TransmitOnAN3155(data, 5);
+	if(AwaitResponce(ACK, ANSWER_WAIT_TIME) == AN_ERROR)
+		return AN_ERROR;
+	action.flag = NONE;
+	if(AwaitResponce(ACK, ANSWER_WAIT_TIME) == AN_ERROR)
+			return AN_ERROR;
+	return AN_OK;
+}
+
 
 #endif /* INC_COMMANDMODULE_H_ */

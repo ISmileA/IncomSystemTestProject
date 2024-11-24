@@ -14,8 +14,8 @@
 */
 #define POLY 0x1021
 
-static uint16_t crc16(uint8_t data[], uint16_t size) {
-	uint16_t crc = 0xFFFF;
+uint16_t crc16(uint16_t crc_now ,uint8_t *data, uint16_t size) {
+	uint16_t crc = crc_now;
 
 	for (uint16_t j = 0; j < size; j++)
 	{
