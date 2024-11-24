@@ -28,7 +28,6 @@ int main(void)
   BootModeStart();
   HAL_Delay(700);
   StartCommand();
-
   while (1)
   {
 	  switch(action.command){
@@ -45,8 +44,8 @@ int main(void)
 		  	  break;
 	  	  case(GET_CRC16):
 			  if(ReadFlashData(FLASH_CRC16_POS, 2)){
-				  crc16_schet = (uint16_t)(action.data[0] << 8) |
-				  (uint16_t)(action.data[1]);
+//				  crc16_schet = (uint16_t)(action.data[0] << 8) |
+//				  (uint16_t)(action.data[1]);
 				  action.command = READ_DATA;
 			  }
 	  	  	  break;
@@ -56,7 +55,6 @@ int main(void)
 				  crc_now = crc16(crc_now, action.data, read);
 				  schet+=1;
 				  if((dataSize-byteReads) == 0){
-					  HAL_GPIO_WritePin(BOOT_PORT, BOOT_PIN, GPIO_PIN_RESET);
 					  action.command = GO_COMMAND;
 				  }else if((dataSize-byteReads) < read){
 					  read = (dataSize-byteReads);
@@ -64,7 +62,8 @@ int main(void)
 			  }
 	  	  	  break;
 	  	  case(GO_COMMAND):
-			  if(GoInProgramm(0x80000000)){
+			  if(GoInProgramm(FLASH_ADRESS_START)){
+				  BootModeEnd();
 				  action.command = 0x00;
 			  }
 	  	  	  break;

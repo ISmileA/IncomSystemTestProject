@@ -28,6 +28,13 @@ void BootModeStart(){
 	HAL_GPIO_WritePin(RESET_PORT, RESET_PIN, GPIO_PIN_SET);
 }
 
+void BootModeEnd(){
+	HAL_GPIO_WritePin(BOOT_PORT, BOOT_PIN, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(RESET_PORT, RESET_PIN, GPIO_PIN_RESET);
+	HAL_Delay(50);
+	HAL_GPIO_WritePin(RESET_PORT, RESET_PIN, GPIO_PIN_SET);
+}
+
 uint8_t AwaitResponce(uint8_t status, uint32_t maxWaitTime){
 	uint32_t timer = HAL_GetTick();
 	while(action.flag != status){
@@ -98,8 +105,6 @@ uint8_t GoInProgramm(uint32_t address){
 	if(AwaitResponce(ACK, ANSWER_WAIT_TIME) == AN_ERROR)
 		return AN_ERROR;
 	action.flag = NONE;
-	if(AwaitResponce(ACK, ANSWER_WAIT_TIME) == AN_ERROR)
-			return AN_ERROR;
 	return AN_OK;
 }
 
