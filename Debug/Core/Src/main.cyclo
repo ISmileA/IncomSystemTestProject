@@ -1,9 +1,8 @@
 ../Core/Inc/Modules/CrcModule.h:17:17:crc16	4
 ../Core/Inc/Modules/CrcModule.h:29:9:crcAN3155	2
-../Core/Inc/Modules/CommandModule.h:22:6:BootModeStart	1
-../Core/Inc/Modules/CommandModule.h:29:6:StartCommand	4
-../Core/Inc/Modules/CommandModule.h:47:6:TestRead	1
-../Core/Inc/Modules/CommandModule.h:71:6:ReadFlashData	11
-../Core/Src/main.c:13:5:main	4
-../Core/Src/main.c:40:6:SystemClock_Config	3
-../Core/Src/main.c:89:6:Error_Handler	1
+../Core/Inc/Modules/CommandModule.h:24:6:BootModeStart	1
+../Core/Inc/Modules/CommandModule.h:31:9:AwaitResponce	4
+../Core/Inc/Modules/CommandModule.h:40:6:StartCommand	3
+../Core/Inc/Modules/CommandModule.h:55:9:ReadFlashData	4
+../Core/Src/main.c:12:5:main	2
+../Core/Src/main.c:33:6:SystemClock_Config	1

@@ -6,8 +6,8 @@ uint8_t buffer[MAX_DATA] = {};
 uint32_t timer = 0;
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	if((HAL_GetTick()-timer) >= 5)
-		recived_bytes = 0;
+//	if((HAL_GetTick()-timer) >= 5)
+//		recived_bytes = 0;
 	buffer[recived_bytes] = rxcall;
 	recived_bytes++;
 	if(recived_bytes == recive.length){
@@ -16,4 +16,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	}
 	timer = HAL_GetTick();
 	HAL_UART_Receive_IT(huart,&rxcall,1);
+}
+
+void TransmitOnAN3155(uint8_t *data, uint16_t len){
+	for (uint16_t i = 0; i<len; i++){
+		USART1->DR = data[i];
+		HAL_Delay(1);
+	}
 }

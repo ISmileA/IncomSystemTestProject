@@ -27,19 +27,17 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
+#include "stm32f1xx_hal.h"
 #include "Configs/AN3155Config.h"
 #include "Configs/BootConfig.h"
 
 typedef struct{
 	uint8_t command;
 	uint16_t length;
-	uint8_t data[MAX_DATA];
 } ReciveData;
 
 typedef struct{
 	uint8_t command;
-	uint8_t state;
 	uint8_t flag;
 	uint8_t data[MAX_DATA];
 } Action;

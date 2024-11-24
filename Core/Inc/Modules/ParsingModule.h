@@ -13,15 +13,12 @@
 void DataParser(uint8_t *data){
 	switch(recive.command){
 		case(RECIVE_STATE):
-			if(data[0] == ACK){
-				HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-				action.state++;
-				action.flag = 1;
-			}else
+			action.flag = data[0];
 			break;
 		case(RECIVE_DATA):
-			action.flag = 1;
-			action.state++;
+		    for(uint16_t i=0; i<recive.length-1; i++)
+		    	action.data[i] = data[i+1];
+			action.flag = DATA;
 			break;
 	}
 }

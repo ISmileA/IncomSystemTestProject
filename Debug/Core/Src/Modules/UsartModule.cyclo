@@ -1,2 +1,3 @@
 ../Core/Inc/Modules/ParsingModule.h:13:6:DataParser	4
-../Core/Src/Modules/UsartModule.c:8:6:HAL_UART_RxCpltCallback	3
+../Core/Src/Modules/UsartModule.c:8:6:HAL_UART_RxCpltCallback	2
+../Core/Src/Modules/UsartModule.c:21:6:TransmitOnAN3155	2

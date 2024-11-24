@@ -9,7 +9,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
+-include Drivers/STM32F1xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/Modules/subdir.mk
 -include Core/Src/subdir.mk
@@ -35,34 +35,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := IncomSystemTestProject
+BUILD_ARTIFACT_NAME := IncomSystemTestProjectF103
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-IncomSystemTestProject.elf \
+IncomSystemTestProjectF103.elf \
 
 MAP_FILES += \
-IncomSystemTestProject.map \
+IncomSystemTestProjectF103.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-IncomSystemTestProject.list \
+IncomSystemTestProjectF103.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: IncomSystemTestProject.elf secondary-outputs
+main-build: IncomSystemTestProjectF103.elf secondary-outputs
 
 # Tool invocations
-IncomSystemTestProject.elf IncomSystemTestProject.map: $(OBJS) $(USER_OBJS) C:\myprojects\Stm32\IncomSystemTestProject\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "IncomSystemTestProject.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\myprojects\Stm32\IncomSystemTestProject\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="IncomSystemTestProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+IncomSystemTestProjectF103.elf IncomSystemTestProjectF103.map: $(OBJS) $(USER_OBJS) C:\myprojects\Stm32\IncomSystemTestProjectF103\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "IncomSystemTestProjectF103.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\myprojects\Stm32\IncomSystemTestProjectF103\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="IncomSystemTestProjectF103.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -71,14 +71,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-IncomSystemTestProject.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "IncomSystemTestProject.list"
+IncomSystemTestProjectF103.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "IncomSystemTestProjectF103.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) IncomSystemTestProject.elf IncomSystemTestProject.list IncomSystemTestProject.map default.size.stdout
+	-$(RM) IncomSystemTestProjectF103.elf IncomSystemTestProjectF103.list IncomSystemTestProjectF103.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

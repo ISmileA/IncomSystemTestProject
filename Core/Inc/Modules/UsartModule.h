@@ -10,5 +10,6 @@
 
 #include "main.h"
 
+void TransmitOnAN3155(uint8_t *data, uint16_t len);
 
 #endif /* MODULES_USARTMODULE_H_ */
