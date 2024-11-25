@@ -26,6 +26,26 @@ uint16_t crc16(uint16_t crc_now ,uint8_t *data, uint16_t size) {
 	return crc;
 }
 
+uint16_t ModBusCRC16(uint16_t crc16_now, uint8_t *data, uint16_t len)
+{
+    uint16_t i, j, tmp, crc16 = crc16_now;
+
+    for (i = 0; i < len; i++)
+    {
+        crc16 ^= ((uint8_t)data[i]);
+        for (j = 0; j < 8; j++)
+        {
+            tmp = (uint16_t)(crc16 & 0x0001);
+            crc16 >>= 1;
+            if (tmp == 1)
+            {
+                crc16 ^= 0xa001; // тоже или полиномиальный
+            }
+        }
+    }
+    return crc16;
+}
+
 uint8_t crcAN3155(uint8_t *data, uint8_t len){
 	uint8_t numb = 0;
 	for(int i=0; i<len; i++){

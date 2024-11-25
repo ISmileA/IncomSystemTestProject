@@ -9,11 +9,13 @@ ReciveData recive = {RECIVE_STATE, 1};
 Action action = {GET_DATA_SIZE, 0, {}};
 void SystemClock_Config(void);
 
+
+
 uint32_t byteReads = 0;
 uint32_t dataSize = 18428;
 uint16_t crc16_schet = 0x3E42;
-uint16_t crc_now = 0xFFFF;
-uint16_t read = MAX_DATA;
+volatile uint16_t crc_now = 0xFFFF;
+uint16_t read = 256;
 
 uint16_t schet = 0;
 
@@ -52,8 +54,12 @@ int main(void)
 	  	  case(READ_DATA):
 			  if(ReadFlashData(FLASH_ADRESS_START+byteReads, read) && dataSize >= read){
 				  byteReads+=read;
-				  crc_now = crc16(crc_now, action.data, read);
+				  crc_now = ModBusCRC16(crc_now, action.data, read);
 				  schet+=1;
+				  if(schet == 2){
+					  HAL_Delay(50);
+					  HAL_Delay(10);
+				  }
 				  if((dataSize-byteReads) == 0){
 					  action.command = GO_COMMAND;
 				  }else if((dataSize-byteReads) < read){

@@ -44,7 +44,7 @@ typedef struct{
 typedef struct{
 	uint8_t command;
 	uint8_t flag;
-	uint8_t data[MAX_DATA];
+	uint8_t data[256];
 } Action;
 
 extern ReciveData recive;

@@ -16,8 +16,9 @@ void DataParser(uint8_t *data){
 			action.flag = data[0];
 			break;
 		case(RECIVE_DATA):
-		    for(uint16_t i=0; i<recive.length-1; i++)
+		    for(uint16_t i=0; i<recive.length-1; i++){
 		    	action.data[i] = data[i+1];
+		    }
 			action.flag = DATA;
 			break;
 	}
