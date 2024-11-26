@@ -1,0 +1,8 @@
+../Core/Inc/Modules/Crc16Module.h:24:17:crc16	4
+../Core/Src/Modules/CommandModule.c:15:6:BootModeStart	1
+../Core/Src/Modules/CommandModule.c:22:6:BootModeEnd	1
+../Core/Src/Modules/CommandModule.c:30:9:AwaitResponce	4
+../Core/Src/Modules/CommandModule.c:39:9:crcAN3155	2
+../Core/Src/Modules/CommandModule.c:47:6:StartCommand	3
+../Core/Src/Modules/CommandModule.c:60:9:ReadFlashData	4
+../Core/Src/Modules/CommandModule.c:90:9:GoInProgramm	3

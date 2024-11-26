@@ -36,6 +36,10 @@ extern "C" {
 #define READ_DATA		0x03
 #define GO_IN			0x04
 
+#define SUCCESS_LOG		0x05
+#define ERROR_LOG		0x00
+
+
 typedef struct{
 	uint8_t command;
 	uint16_t length;

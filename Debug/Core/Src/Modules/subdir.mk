@@ -5,12 +5,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/Modules/CommandModule.c \
 ../Core/Src/Modules/UsartModule.c 
 
 OBJS += \
+./Core/Src/Modules/CommandModule.o \
 ./Core/Src/Modules/UsartModule.o 
 
 C_DEPS += \
+./Core/Src/Modules/CommandModule.d \
 ./Core/Src/Modules/UsartModule.d 
 
 
@@ -21,7 +24,7 @@ Core/Src/Modules/%.o Core/Src/Modules/%.su Core/Src/Modules/%.cyclo: ../Core/Src
 clean: clean-Core-2f-Src-2f-Modules
 
 clean-Core-2f-Src-2f-Modules:
-	-$(RM) ./Core/Src/Modules/UsartModule.cyclo ./Core/Src/Modules/UsartModule.d ./Core/Src/Modules/UsartModule.o ./Core/Src/Modules/UsartModule.su
+	-$(RM) ./Core/Src/Modules/CommandModule.cyclo ./Core/Src/Modules/CommandModule.d ./Core/Src/Modules/CommandModule.o ./Core/Src/Modules/CommandModule.su ./Core/Src/Modules/UsartModule.cyclo ./Core/Src/Modules/UsartModule.d ./Core/Src/Modules/UsartModule.o ./Core/Src/Modules/UsartModule.su
 
 .PHONY: clean-Core-2f-Src-2f-Modules
 

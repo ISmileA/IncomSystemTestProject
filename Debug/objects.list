@@ -1,3 +1,4 @@
+"./Core/Src/Modules/CommandModule.o"
 "./Core/Src/Modules/UsartModule.o"
 "./Core/Src/gpio.o"
 "./Core/Src/main.o"
