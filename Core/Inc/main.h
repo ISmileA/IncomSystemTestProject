@@ -41,8 +41,8 @@ extern "C" {
 
 
 typedef struct{
-	uint8_t command;
-	uint16_t length;
+	volatile uint8_t command;
+	volatile uint16_t length;
 } ReciveData;
 
 typedef struct{

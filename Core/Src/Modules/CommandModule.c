@@ -83,11 +83,13 @@ uint8_t ReadFlashData(uint32_t address, uint16_t len){
 	recive.command = RECIVE_DATA;
 	recive.length = len+1;
 	TransmitOnAN3155(data, 2);
-	if(AwaitResponce(DATA, ANSWER_WAIT_TIME) == AN_ERROR)
+	if(AwaitResponce(DATA, ANSWER_WAIT_TIME) == AN_ERROR){
+		recive.command = RECIVE_STATE;
+		recive.length = 1;
 		return AN_ERROR;
+	}
 	recive.command = RECIVE_STATE;
 	recive.length = 1;
-
 	return AN_OK;
 }
 

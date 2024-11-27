@@ -5,4 +5,4 @@
 ../Core/Src/Modules/CommandModule.c:43:9:crcAN3155	24	static
 ../Core/Src/Modules/CommandModule.c:51:6:StartCommand	16	static
 ../Core/Src/Modules/CommandModule.c:64:9:ReadFlashData	24	static
-../Core/Src/Modules/CommandModule.c:94:9:GoInProgramm	24	static
+../Core/Src/Modules/CommandModule.c:96:9:GoInProgramm	24	static

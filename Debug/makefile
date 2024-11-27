@@ -53,6 +53,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 IncomSystemTestProjectF103.list \
 
+OBJCOPY_BIN += \
+IncomSystemTestProjectF103.bin \
+
 
 # All Target
 all: main-build
@@ -76,12 +79,17 @@ IncomSystemTestProjectF103.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL
 	@echo 'Finished building: $@'
 	@echo ' '
 
+IncomSystemTestProjectF103.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "IncomSystemTestProjectF103.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) IncomSystemTestProjectF103.elf IncomSystemTestProjectF103.list IncomSystemTestProjectF103.map default.size.stdout
+	-$(RM) IncomSystemTestProjectF103.bin IncomSystemTestProjectF103.elf IncomSystemTestProjectF103.list IncomSystemTestProjectF103.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

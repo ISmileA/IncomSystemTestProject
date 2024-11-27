@@ -13,7 +13,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	if(recived_bytes == recive.length){
 		recived_bytes = 0;
 		DataParser(buffer);
-	}
+	}else if(recived_bytes > recive.length)
+		recived_bytes = 0;
 	timer = HAL_GetTick();
 	HAL_UART_Receive_IT(huart,&rxcall,1);
 }
