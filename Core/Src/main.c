@@ -1,8 +1,8 @@
 #include "main.h"
-#include "usart.h"
-#include "gpio.h"
-#include "Modules/ActionModule.h"
+#include "Inits/usart.h"
+#include "Inits/gpio.h"
 #include "Inits/RCCInit.h"
+#include "Modules/ActionModule.h"
 
 extern UART_HandleTypeDef huart1;
 uint8_t rxcall = 0;
@@ -32,10 +32,10 @@ int main(void)
 			  GetCrc16(FLASH_CRC16_POS);
 	  	  	  break;
 	  	  case(READ_DATA):
-			  ReadMemoryOnDevice();
+			  ReadMemoryOnDevice(FLASH_ADRESS_START);
 	  	  	  break;
 	  	  case(GO_COMMAND):
-			  VerifyAndGo();
+			  VerifyAndGo(FLASH_ADRESS_START);
 	  	  	  break;
 	  	  case(SUCCESS_LOG):
 			  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);

@@ -2,7 +2,7 @@
  * AN3155Config.h
  *
  *  Created on: Nov 21, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_CONFIGS_AN3155CONFIG_H_

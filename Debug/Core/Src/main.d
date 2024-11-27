@@ -23,10 +23,10 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  ../Core/Inc/Configs/AN3155Config.h ../Core/Inc/Configs/BootConfig.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/gpio.h \
- ../Core/Inc/Modules/ActionModule.h ../Core/Inc/Modules/CommandModule.h \
- ../Core/Inc/Configs/BootConfig.h ../Core/Inc/Modules/Crc16Module.h \
- ../Core/Inc/Inits/RCCInit.h
+ ../Core/Inc/Inits/usart.h ../Core/Inc/Inits/gpio.h \
+ ../Core/Inc/Inits/RCCInit.h ../Core/Inc/Modules/ActionModule.h \
+ ../Core/Inc/Modules/CommandModule.h ../Core/Inc/Configs/BootConfig.h \
+ ../Core/Inc/Modules/Crc16Module.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -53,11 +53,10 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 ../Core/Inc/Configs/AN3155Config.h:
 ../Core/Inc/Configs/BootConfig.h:
-../Core/Inc/usart.h:
-../Core/Inc/main.h:
-../Core/Inc/gpio.h:
+../Core/Inc/Inits/usart.h:
+../Core/Inc/Inits/gpio.h:
+../Core/Inc/Inits/RCCInit.h:
 ../Core/Inc/Modules/ActionModule.h:
 ../Core/Inc/Modules/CommandModule.h:
 ../Core/Inc/Configs/BootConfig.h:
 ../Core/Inc/Modules/Crc16Module.h:
-../Core/Inc/Inits/RCCInit.h:

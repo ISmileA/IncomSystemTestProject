@@ -2,7 +2,7 @@
  * ActionModule.h
  *
  *  Created on: Nov 26, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_MODULES_ACTIONMODULE_H_
@@ -36,8 +36,8 @@ void GetCrc16(uint32_t address){
 	}
 }
 
-void ReadMemoryOnDevice(){
-	if(ReadFlashData(FLASH_ADRESS_START+byteReads, read) && dataSize >= read){
+void ReadMemoryOnDevice(uint32_t address){
+	if(ReadFlashData(address+byteReads, read) && dataSize >= read){
 		byteReads+=read;
 		crc_now = crc16(crc_now, action.data, read);
 		if((dataSize-byteReads) == 0){
@@ -48,9 +48,9 @@ void ReadMemoryOnDevice(){
 	}
 }
 
-void VerifyAndGo(){
+void VerifyAndGo(uint32_t address){
 	if(crc16_schet == crc_now){
-		if(GoInProgramm(FLASH_ADRESS_START)){
+		if(GoInProgramm(address)){
 			BootModeEnd();
 			action.command = SUCCESS_LOG;
 		}

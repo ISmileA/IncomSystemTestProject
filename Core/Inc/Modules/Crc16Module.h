@@ -2,7 +2,7 @@
  * Crc16Module.h
  *
  *  Created on: Nov 26, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_MODULES_CRC16MODULE_H_

@@ -2,7 +2,7 @@
  * UsartModule.h
  *
  *  Created on: Nov 20, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef MODULES_USARTMODULE_H_

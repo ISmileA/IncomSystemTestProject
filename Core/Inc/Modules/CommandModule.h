@@ -2,7 +2,7 @@
  * CommandModule.h
  *
  *  Created on: Nov 20, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_COMMANDMODULE_H_

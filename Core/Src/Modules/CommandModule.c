@@ -2,7 +2,7 @@
  * CommandModule.c
  *
  *  Created on: Nov 26, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #include "Modules/CommandModule.h"
@@ -30,8 +30,12 @@ void BootModeEnd(){
 uint8_t AwaitResponce(uint8_t status, uint32_t maxWaitTime){
 	uint32_t timer = HAL_GetTick();
 	while(action.flag != status){
-		if((HAL_GetTick()-timer) >= maxWaitTime || action.flag == NACK)
+		if((HAL_GetTick()-timer) >= maxWaitTime)
 			return AN_ERROR;
+		else if(action.flag == NACK){
+			action.command = ERROR_LOG;
+			return AN_ERROR;
+		}
 	}
 	return AN_OK;
 }

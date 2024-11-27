@@ -2,7 +2,7 @@
  * ParsingModule.h
  *
  *  Created on: Nov 21, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_MODULES_PARSINGMODULE_H_

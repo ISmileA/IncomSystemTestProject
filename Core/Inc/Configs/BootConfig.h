@@ -2,7 +2,7 @@
  * BootConfig.h
  *
  *  Created on: Nov 20, 2024
- *      Author: arsen
+ *      Author: ISmileA
  */
 
 #ifndef INC_CONFIGS_BOOTCONFIG_H_
