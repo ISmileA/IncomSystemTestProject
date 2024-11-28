@@ -51,7 +51,7 @@ uint8_t crcAN3155(uint8_t *data, uint8_t len){
 void StartCommand(){
 	uint8_t data[1] = {START_COMMAND};
 	uint32_t timer = 0;
-	while(action.flag == NONE){
+	while(action.flag != ACK){
 	  if((HAL_GetTick()-timer) >= 1000){
 		  TransmitOnAN3155(data, 1);
 		  timer = HAL_GetTick();
